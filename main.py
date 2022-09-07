@@ -1,4 +1,3 @@
-import asyncio
 from bs4 import BeautifulSoup
 import aiohttp
 from fake_useragent import UserAgent
@@ -29,10 +28,10 @@ async def get_data():
             finally_scope = score.text.split()[0], ':', score.text.split()[1]
 
             info = {
-                "away": team.text.split('\n')[3],
-                "home": team.text.split('\n')[2],
-                "time": time.text.split('\n')[1:3],
-                "currentScore": ''.join(finally_scope),
+                'away': team.text.split('\n')[3],
+                'home': team.text.split('\n')[2],
+                'time': time.text.split('\n')[1:3],
+                'currentScore': ''.join(finally_scope),
                 'markets': {
                     'outcomes': []
                 }
@@ -41,9 +40,9 @@ async def get_data():
             bets = i.find_all('span', class_='c-bets__inner')
             for p, bet in enumerate(bets):
                 info['markets']['outcomes'].append({
-                    "active": False if bet.text == '-' else True,
-                    "odd": bet.text,
-                    "type": types[p],
+                    'active': False if bet.text == '-' else True,
+                    'odd': bet.text,
+                    'type': types[p],
                 })
 
             all_info.append(info)
