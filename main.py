@@ -34,7 +34,6 @@ async def get_data():
                 "time": time.text.split('\n')[1:3],
                 "currentScore": ''.join(finally_scope),
                 'markets': {
-                    'title': None,
                     'outcomes': []
                 }
             }
@@ -58,11 +57,3 @@ async def get_database():
     finally_data = await get_all_date_from_redis()
 
     return finally_data
-
-
-async def main_test():
-    await get_data()
-
-
-if __name__ == '__main__':
-    asyncio.run(main_test())
